@@ -9,3 +9,5 @@ function changeState(person: PersonType, usage: UsageType): ToiletState {
     return ToiletState.Down;
   }
 }
+
+export default changeState;
