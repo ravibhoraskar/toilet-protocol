@@ -13,22 +13,22 @@ function lazy(
   person: PersonType,
   usage: UsageType
 ): strategyOutput {
-  if (person == PersonType.Hombre && usage == UsageType.PeePee) {
+  if (person === PersonType.Hombre && usage === UsageType.PeePee) {
     return {
       state: ToiletState.Up,
       flipsByWomen: 0,
-      flipsByMen: initialState == ToiletState.Down ? 1 : 0,
+      flipsByMen: initialState === ToiletState.Down ? 1 : 0,
     };
-  } else if (person == PersonType.Hombre && usage == UsageType.PooPoo) {
+  } else if (person === PersonType.Hombre && usage === UsageType.PooPoo) {
     return {
       state: ToiletState.Down,
       flipsByWomen: 0,
-      flipsByMen: initialState == ToiletState.Up ? 1 : 0,
+      flipsByMen: initialState === ToiletState.Up ? 1 : 0,
     };
   } else {
     return {
       state: ToiletState.Down,
-      flipsByWomen: initialState == ToiletState.Up ? 1 : 0,
+      flipsByWomen: initialState === ToiletState.Up ? 1 : 0,
       flipsByMen: 0,
     };
   }
@@ -43,7 +43,7 @@ function gentleman(
     state: ToiletState.Down,
     flipsByWomen: 0,
     flipsByMen:
-      usage == UsageType.PeePee && person == PersonType.Hombre ? 2 : 0,
+      usage === UsageType.PeePee && person === PersonType.Hombre ? 2 : 0,
   };
 }
 
@@ -52,7 +52,7 @@ function gentlewoman(
   person: PersonType,
   usage: UsageType
 ): strategyOutput {
-  if (person == PersonType.Mujer) {
+  if (person === PersonType.Mujer) {
     return {
       state: ToiletState.Up,
       flipsByWomen: 2,
@@ -62,7 +62,7 @@ function gentlewoman(
     return {
       state: ToiletState.Up,
       flipsByWomen: 0,
-      flipsByMen: usage == UsageType.PooPoo ? 2 : 0,
+      flipsByMen: usage === UsageType.PooPoo ? 2 : 0,
     };
   }
 }

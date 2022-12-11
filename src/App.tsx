@@ -1,5 +1,4 @@
 import React, { Component, ReactNode } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import ToiletState from "./ToiletState";
 import Toilet from "./Toilet";
