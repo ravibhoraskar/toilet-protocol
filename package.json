@@ -1,6 +1,6 @@
 {
   "name": "toilet-protocol",
-  "homepage": "http://ravi.bhoraskar.com/toilet/",
+  "homepage": "http://ravi.bhoraskar.com/toilet-protocol/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
