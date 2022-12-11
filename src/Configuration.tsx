@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from "react";
+import React from "react";
 import Strategies from "./Strategies";
 
 const Configuration = (props: {
