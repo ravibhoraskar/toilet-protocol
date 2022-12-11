@@ -7,6 +7,7 @@ import Usage from "./Usage";
 import PersonType from "./PersonType";
 import UsageType from "./UsageType";
 import Strategies from "./Strategies";
+import Configuration from "./Configuration";
 
 class App extends Component<
   {},
@@ -46,68 +47,38 @@ class App extends Component<
     return (
       <div className="App">
         <center>
-          <table>
-            <tr>
-              <td> Strategy: </td>
-              <td>
-                <select
-                  name="strategies"
-                  id="strategies"
-                  onChange={this.onStrategyChange}
-                >
-                  {Object.keys(Strategies).map((strat) => (
-                    <option value={strat} key={strat}>
-                      {strat}
-                    </option>
-                  ))}
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td>Percentage of men:</td>
-              <td>
-                <input
-                  type="number"
-                  name="percentMan"
-                  onChange={this.onPercentManChange}
-                  value={this.state.percentageMan}
-                />
-              </td>
-            </tr>
-            <tr>
-              <td>Percentage of poopoo:</td>
-              <td>
-                <input
-                  type="number"
-                  name="percentPoo"
-                  onChange={this.onPercentPooPooChange}
-                  value={this.state.percentagePooPoo}
-                />
-              </td>
-            </tr>
-          </table>
+          <Configuration
+            onStrategyChange={this.onStrategyChange}
+            selectedStrategy={this.state.strategy}
+            onPercentManChange={this.onPercentManChange}
+            percentageMan={this.state.percentageMan}
+            onPercentPooPooChange={this.onPercentPooPooChange}
+            percentagePooPoo={this.state.percentagePooPoo}
+          />
           <button onClick={this.onClick}>Next!</button>
           <Toilet toilet={this.state.toiletState} />
           <br />
           <Person person={this.state.lastPerson} />
           <Usage usage={this.state.lastUsage} />
           <table>
-            <tr>
-              <td>Flips by Men:</td>
-              <td> {this.state.flipsByMen}</td>
-            </tr>
-            <tr>
-              <td>Flips by Women:</td>
-              <td> {this.state.flipsByWomen}</td>
-            </tr>
-            <tr>
-              <td>Total Flips:</td>
-              <td> {this.state.flipsByWomen + this.state.flipsByMen}</td>
-            </tr>
-            <tr>
-              <td>Number of rounds:</td>
-              <td> {this.state.numRounds}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>Flips by Men:</td>
+                <td> {this.state.flipsByMen}</td>
+              </tr>
+              <tr>
+                <td>Flips by Women:</td>
+                <td> {this.state.flipsByWomen}</td>
+              </tr>
+              <tr>
+                <td>Total Flips:</td>
+                <td> {this.state.flipsByWomen + this.state.flipsByMen}</td>
+              </tr>
+              <tr>
+                <td>Number of rounds:</td>
+                <td> {this.state.numRounds}</td>
+              </tr>
+            </tbody>
           </table>
         </center>
       </div>
@@ -149,7 +120,7 @@ class App extends Component<
       flipsByMen: 0,
       flipsByWomen: 0,
       numRounds: 0,
-      percentageMan: parseInt(event.target.value),
+      percentageMan: parseInt(event.target.value) || 0,
     });
   }
 
@@ -158,7 +129,7 @@ class App extends Component<
       flipsByMen: 0,
       flipsByWomen: 0,
       numRounds: 0,
-      percentagePooPoo: parseInt(event.target.value),
+      percentagePooPoo: parseInt(event.target.value) || 0,
     });
   }
 }
