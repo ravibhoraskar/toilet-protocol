@@ -2,12 +2,11 @@ import React, { Component, ReactNode } from "react";
 import "./App.css";
 import ToiletState from "./ToiletState";
 import Toilet from "./Toilet";
-import Person from "./Person";
-import Usage from "./Usage";
 import PersonType from "./PersonType";
 import UsageType from "./UsageType";
 import Strategies from "./Strategies";
 import Configuration from "./Configuration";
+import LastUsage from "./LastUsage";
 
 class App extends Component<
   {},
@@ -36,11 +35,6 @@ class App extends Component<
       flipsByWomen: 0,
       numRounds: 0,
     };
-
-    this.onClick = this.onClick.bind(this);
-    this.onStrategyChange = this.onStrategyChange.bind(this);
-    this.onPercentManChange = this.onPercentManChange.bind(this);
-    this.onPercentPooPooChange = this.onPercentPooPooChange.bind(this);
   }
 
   render(): ReactNode {
@@ -55,11 +49,12 @@ class App extends Component<
             onPercentPooPooChange={this.onPercentPooPooChange}
             percentagePooPoo={this.state.percentagePooPoo}
           />
-          <button onClick={this.onClick}>Next!</button>
+          <button onClick={this.onClick}>Do it!</button>
           <Toilet toilet={this.state.toiletState} />
-          <br />
-          <Person person={this.state.lastPerson} />
-          <Usage usage={this.state.lastUsage} />
+          <LastUsage
+            person={this.state.lastPerson}
+            usage={this.state.lastUsage}
+          />
           <table>
             <tbody>
               <tr>
@@ -85,7 +80,7 @@ class App extends Component<
     );
   }
 
-  onClick() {
+  onClick = () => {
     const person =
       Math.random() * 100 < this.state.percentageMan
         ? PersonType.Hombre
@@ -104,34 +99,34 @@ class App extends Component<
       flipsByWomen: this.state.flipsByWomen + strategyOutput.flipsByWomen,
       numRounds: this.state.numRounds + 1,
     });
-  }
+  };
 
-  onStrategyChange(event: { target: { value: string } }) {
+  onStrategyChange = (event: { target: { value: string } }) => {
     this.setState({
       flipsByMen: 0,
       flipsByWomen: 0,
       numRounds: 0,
       strategy: event.target.value as keyof typeof Strategies,
     });
-  }
+  };
 
-  onPercentManChange(event: { target: { value: string } }) {
+  onPercentManChange = (event: { target: { value: string } }) => {
     this.setState({
       flipsByMen: 0,
       flipsByWomen: 0,
       numRounds: 0,
       percentageMan: parseInt(event.target.value) || 0,
     });
-  }
+  };
 
-  onPercentPooPooChange(event: any) {
+  onPercentPooPooChange = (event: { target: { value: string } }) => {
     this.setState({
       flipsByMen: 0,
       flipsByWomen: 0,
       numRounds: 0,
       percentagePooPoo: parseInt(event.target.value) || 0,
     });
-  }
+  };
 }
 
 export default App;
